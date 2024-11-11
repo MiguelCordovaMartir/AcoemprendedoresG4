@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Clave3_Grupo4
+namespace Clave3_Grupo4.Interfaces
 {
-    public partial class Form1 : Form
+    public partial class TransaccionesForm : Form
     {
-        public Form1()
+        public TransaccionesForm()
         {
             InitializeComponent();
         }
