@@ -48,6 +48,7 @@ namespace Clave3_Grupo4.Interfaces
             this.dataGridViewTransacciones.Name = "dataGridViewTransacciones";
             this.dataGridViewTransacciones.Size = new System.Drawing.Size(637, 150);
             this.dataGridViewTransacciones.TabIndex = 17;
+            this.dataGridViewTransacciones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTransacciones_CellClick);
             // 
             // btnVerHistorial
             // 

@@ -25,6 +25,7 @@ namespace Clave3_Grupo4.Interfaces
             CargarEmpleados(); // Carga la lista de empleados en el ComboBox correspondiente
             CargarTipoTransaccion(); // Carga los tipos de transacción en el ComboBox
             LimpiarCamposTransaccion(); // Limpia los campos del formulario
+            CargarHistorialTransacciones(); // Carga el historial al iniciar el formulario
         }
 
         private void ConfigurarComboBoxes()
@@ -74,10 +75,9 @@ namespace Clave3_Grupo4.Interfaces
 
         private void btnAgregarTransaccion_Click(object sender, EventArgs e)
         {
-            if (!ValidarCamposTransaccion()) return; // Valida que los campos no estén vacíos
+            if (!ValidarCamposTransaccion()) return;
 
-            // Crea una nueva transacción con los datos ingresados
-            Transaccion transaccion = new Transaccion   
+            Transaccion transaccion = new Transaccion
             {
                 IdCliente = Convert.ToInt32(cmbClientes.SelectedValue),
                 IdEmpleado = cmbEmpleados.SelectedValue != null ? (int?)Convert.ToInt32(cmbEmpleados.SelectedValue) : null,
@@ -86,59 +86,51 @@ namespace Clave3_Grupo4.Interfaces
                 Descripcion = txtDescripcion.Text
             };
 
-            // Intenta insertar la transacción en la base de datos
             if (transaccionDB.InsertarTransaccion(transaccion))
             {
                 MessageBox.Show("Transacción agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarHistorialTransacciones(); // Recarga el historial de transacciones
-                LimpiarCamposTransaccion(); // Limpia los campos del formulario
+                CargarHistorialTransacciones();
+                LimpiarCamposTransaccion();
             }
             else
             {
                 MessageBox.Show("Error al agregar la transacción.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-
         }
 
         private bool ValidarCamposTransaccion()
         {
-            // Verificar si el campo de cliente está seleccionado
             if (cmbClientes.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, seleccione un cliente.", "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            // Verificar si el campo de tipo de transacción está seleccionado
+            if (cmbEmpleados.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un empleado.", "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             if (cmbTipoTransaccion.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, seleccione el tipo de transacción.", "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            // Verificar si el campo de monto está completo
-            if (string.IsNullOrWhiteSpace(txtMonto.Text))
+            if (string.IsNullOrWhiteSpace(txtMonto.Text) || !decimal.TryParse(txtMonto.Text, out decimal monto) || monto <= 0)
             {
-                MessageBox.Show("Por favor, ingrese el monto de la transacción.", "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, ingrese un monto válido (mayor que cero) usando solo números.", "Monto Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            // Validar que el monto es un número decimal
-            if (!decimal.TryParse(txtMonto.Text, out decimal monto) || monto <= 0)
-            {
-                MessageBox.Show("Por favor, ingrese un monto válido (mayor que cero).", "Monto Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Verificar si el campo de descripción está completo
             if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
             {
                 MessageBox.Show("Por favor, ingrese una descripción para la transacción.", "Campo Requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            // Si todas las validaciones pasan, retornar true
             return true;
         }
 
@@ -168,7 +160,7 @@ namespace Clave3_Grupo4.Interfaces
                 }
 
                 int idCliente = Convert.ToInt32(cmbClientes.SelectedValue);
-                dataGridViewTransacciones.DataSource = transaccionDB.ObtenerTransaccionesPorCliente(idCliente); // Carga las transacciones en el DataGridView
+                dataGridViewTransacciones.DataSource = transaccionDB.ObtenerTransaccionesPorCliente(idCliente);
             }
             catch (Exception ex)
             {
@@ -188,6 +180,16 @@ namespace Clave3_Grupo4.Interfaces
             if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void dataGridViewTransacciones_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0)
+            {
+                cmbClientes.SelectedValue = dataGridViewTransacciones.Rows[e.RowIndex].Cells["IdCliente"].Value;
+                CargarHistorialTransacciones();
             }
         }
     }
