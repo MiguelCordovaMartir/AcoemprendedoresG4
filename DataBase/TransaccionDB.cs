@@ -98,5 +98,47 @@ namespace Clave3_Grupo4.DataBase
 
             return listaTransacciones;
         }
+
+        public List<Transaccion> ObtenerTodasTransacciones()
+        {
+            List<Transaccion> listaTransacciones = new List<Transaccion>();
+
+            try
+            {
+                // Consulta SQL para seleccionar todas las transacciones sin filtrar por cliente
+                string query = "SELECT * FROM Transacciones";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Transaccion transaccion = new Transaccion
+                            {
+                                IdTransaccion = reader.GetInt32("IdTransaccion"),
+                                IdCliente = reader.GetInt32("IdCliente"),
+                                IdEmpleado = reader.IsDBNull(reader.GetOrdinal("IdEmpleado")) ? (int?)null : reader.GetInt32("IdEmpleado"),
+                                FechaTransaccion = reader.GetDateTime("FechaTransaccion"),
+                                TipoTransaccion = reader.GetString("TipoTransaccion"),
+                                Monto = reader.GetDecimal("Monto"),
+                                Descripcion = reader.GetString("Descripcion")
+                            };
+                            listaTransacciones.Add(transaccion);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener transacciones: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+
+            return listaTransacciones;
+        }
     }
 }

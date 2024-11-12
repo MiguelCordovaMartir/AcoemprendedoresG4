@@ -38,6 +38,7 @@ namespace Clave3_Grupo4.Interfaces
             this.dtpFechaTransaccion = new System.Windows.Forms.DateTimePicker();
             this.cmbEmpleados = new System.Windows.Forms.ComboBox();
             this.cmbClientes = new System.Windows.Forms.ComboBox();
+            this.btnCargarTransacciones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTransacciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +53,7 @@ namespace Clave3_Grupo4.Interfaces
             // 
             // btnVerHistorial
             // 
-            this.btnVerHistorial.Location = new System.Drawing.Point(509, 100);
+            this.btnVerHistorial.Location = new System.Drawing.Point(509, 65);
             this.btnVerHistorial.Name = "btnVerHistorial";
             this.btnVerHistorial.Size = new System.Drawing.Size(75, 23);
             this.btnVerHistorial.TabIndex = 16;
@@ -116,11 +117,22 @@ namespace Clave3_Grupo4.Interfaces
             this.cmbClientes.Size = new System.Drawing.Size(121, 21);
             this.cmbClientes.TabIndex = 9;
             // 
+            // btnCargarTransacciones
+            // 
+            this.btnCargarTransacciones.Location = new System.Drawing.Point(482, 103);
+            this.btnCargarTransacciones.Name = "btnCargarTransacciones";
+            this.btnCargarTransacciones.Size = new System.Drawing.Size(102, 39);
+            this.btnCargarTransacciones.TabIndex = 18;
+            this.btnCargarTransacciones.Text = "Cargar Todas las transacciones";
+            this.btnCargarTransacciones.UseVisualStyleBackColor = true;
+            this.btnCargarTransacciones.Click += new System.EventHandler(this.btnCargarTransacciones_Click);
+            // 
             // TransaccionesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCargarTransacciones);
             this.Controls.Add(this.dataGridViewTransacciones);
             this.Controls.Add(this.btnVerHistorial);
             this.Controls.Add(this.btnAgregarTransaccion);
@@ -149,5 +161,6 @@ namespace Clave3_Grupo4.Interfaces
         private System.Windows.Forms.DateTimePicker dtpFechaTransaccion;
         private System.Windows.Forms.ComboBox cmbEmpleados;
         private System.Windows.Forms.ComboBox cmbClientes;
+        private System.Windows.Forms.Button btnCargarTransacciones;
     }
 }

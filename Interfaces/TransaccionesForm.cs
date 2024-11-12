@@ -20,12 +20,13 @@ namespace Clave3_Grupo4.Interfaces
         public TransaccionesForm()
         {
             InitializeComponent();
+            CargarTodasTransacciones();
             ConfigurarComboBoxes(); // Configura los ComboBoxes para que no permitan entrada de texto libre
             CargarClientes(); // Carga la lista de clientes en el ComboBox correspondiente
             CargarEmpleados(); // Carga la lista de empleados en el ComboBox correspondiente
             CargarTipoTransaccion(); // Carga los tipos de transacción en el ComboBox
             LimpiarCamposTransaccion(); // Limpia los campos del formulario
-            CargarHistorialTransacciones(); // Carga el historial al iniciar el formulario
+
         }
 
         private void ConfigurarComboBoxes()
@@ -72,7 +73,17 @@ namespace Clave3_Grupo4.Interfaces
             cmbTipoTransaccion.Items.AddRange(new string[] { "Abono", "Cargo" }); // Agrega tipos de transacción al ComboBox
             cmbTipoTransaccion.SelectedIndex = -1; // Deselecciona cualquier opción
         }
-
+        private void CargarTodasTransacciones()
+        {
+            try
+            {
+                dataGridViewTransacciones.DataSource = transaccionDB.ObtenerTodasTransacciones();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar todas las transacciones: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void btnAgregarTransaccion_Click(object sender, EventArgs e)
         {
             if (!ValidarCamposTransaccion()) return;
@@ -89,7 +100,7 @@ namespace Clave3_Grupo4.Interfaces
             if (transaccionDB.InsertarTransaccion(transaccion))
             {
                 MessageBox.Show("Transacción agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarHistorialTransacciones();
+                CargarTodasTransacciones(); // Recarga todas las transacciones después de agregar una nueva
                 LimpiarCamposTransaccion();
             }
             else
@@ -191,6 +202,12 @@ namespace Clave3_Grupo4.Interfaces
                 cmbClientes.SelectedValue = dataGridViewTransacciones.Rows[e.RowIndex].Cells["IdCliente"].Value;
                 CargarHistorialTransacciones();
             }
+        }
+
+        private void btnCargarTransacciones_Click(object sender, EventArgs e)
+        {
+            CargarTodasTransacciones();//carga todas las transacciones 
+            LimpiarCamposTransaccion(); // Limpia los campos del formulario
         }
     }
 }
