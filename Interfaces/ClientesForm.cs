@@ -171,5 +171,25 @@ namespace Clave3_Grupo4.Interfaces
         {
             CargarClientesEnGrid();
         }
+
+        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            string criterio = txtBuscar.Text.Trim();
+
+            if (!string.IsNullOrEmpty(criterio))
+            {
+                DataTable dataTable = clienteDB.BuscarClientes(criterio);
+                dataGridViewClientes.DataSource = dataTable;
+
+                if (dataTable.Rows.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron Cliente con el criterio especificado.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingrese un criterio de búsqueda.", "Campo vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
