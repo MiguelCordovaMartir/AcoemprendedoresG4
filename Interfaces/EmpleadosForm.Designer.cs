@@ -40,6 +40,7 @@ namespace Clave3_Grupo4.Interfaces
             this.btnBuscarEmpleado = new System.Windows.Forms.Button();
             this.dataGridViewEmpleados = new System.Windows.Forms.DataGridView();
             this.cmbRol = new System.Windows.Forms.ComboBox();
+            this.btnExportarExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmpleados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,11 +139,22 @@ namespace Clave3_Grupo4.Interfaces
             this.cmbRol.Size = new System.Drawing.Size(121, 21);
             this.cmbRol.TabIndex = 12;
             // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.Location = new System.Drawing.Point(523, 68);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(118, 23);
+            this.btnExportarExcel.TabIndex = 13;
+            this.btnExportarExcel.Text = "Exportar a Excel";
+            this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            // 
             // EmpleadosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnExportarExcel);
             this.Controls.Add(this.cmbRol);
             this.Controls.Add(this.dataGridViewEmpleados);
             this.Controls.Add(this.btnBuscarEmpleado);
@@ -175,5 +187,6 @@ namespace Clave3_Grupo4.Interfaces
         private System.Windows.Forms.Button btnBuscarEmpleado;
         private System.Windows.Forms.DataGridView dataGridViewEmpleados;
         private System.Windows.Forms.ComboBox cmbRol;
+        private System.Windows.Forms.Button btnExportarExcel;
     }
 }

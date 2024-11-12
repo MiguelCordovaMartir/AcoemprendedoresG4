@@ -207,6 +207,46 @@ namespace Clave3_Grupo4.Interfaces
             LimpiarCampos();
         }
 
-     
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewEmpleados.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // Crear una nueva aplicación de Excel
+                Excel.Application excelApp = new Excel.Application();
+                excelApp.Workbooks.Add();
+
+                // Obtener la hoja activa en el archivo Excel
+                Excel._Worksheet worksheet = (Excel._Worksheet)excelApp.ActiveSheet;
+
+                // Añadir encabezados de columnas
+                for (int i = 0; i < dataGridViewEmpleados.Columns.Count; i++)
+                {
+                    worksheet.Cells[1, i + 1] = dataGridViewEmpleados.Columns[i].HeaderText;
+                }
+
+                // Añadir los datos de cada fila
+                for (int i = 0; i < dataGridViewEmpleados.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridViewEmpleados.Columns.Count; j++)
+                    {
+                        worksheet.Cells[i + 2, j + 1] = dataGridViewEmpleados.Rows[i].Cells[j].Value?.ToString();
+                    }
+                }
+
+                // Mostrar Excel y liberar el objeto
+                excelApp.Visible = true;
+                MessageBox.Show("Datos exportados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar a Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
