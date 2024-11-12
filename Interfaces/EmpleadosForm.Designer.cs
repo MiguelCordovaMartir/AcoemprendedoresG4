@@ -132,9 +132,10 @@ namespace Clave3_Grupo4.Interfaces
             this.dataGridViewEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmpleados.Location = new System.Drawing.Point(113, 255);
             this.dataGridViewEmpleados.Name = "dataGridViewEmpleados";
-            this.dataGridViewEmpleados.Size = new System.Drawing.Size(589, 183);
+            this.dataGridViewEmpleados.Size = new System.Drawing.Size(538, 183);
             this.dataGridViewEmpleados.TabIndex = 11;
             this.dataGridViewEmpleados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmpleados_CellClick);
+            this.dataGridViewEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmpleados_CellContentClick);
             // 
             // cmbRol
             // 
