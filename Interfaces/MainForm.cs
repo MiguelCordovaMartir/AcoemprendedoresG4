@@ -41,11 +41,13 @@ namespace Clave3_Grupo4.Interfaces
             {
                 btnGestionUsuarios.Enabled = false;
                 btnGestionTransacciones.Enabled = false;
+                btnGestionEmpleados.Enabled = false;
             }
             else if (usuarioActual.Rol == "AtencionCliente")
             {
                 btnGestionUsuarios.Enabled = false;
                 btnGestionTransacciones.Enabled = false;
+                btnGestionEmpleados.Enabled = false;
             }
             // Gerente tiene acceso completo
         }
@@ -54,7 +56,10 @@ namespace Clave3_Grupo4.Interfaces
         {
             // Abrir el formulario de gestión de clientes
             ClientesForm clientesForm = new ClientesForm();
+            this.Hide();
             clientesForm.ShowDialog();
+            this.Close();
+
 
 
         }
@@ -63,20 +68,32 @@ namespace Clave3_Grupo4.Interfaces
         {
             // Abrir el formulario de gestión de Empleados
             EmpleadosForm empleadosForm = new EmpleadosForm();
+            this.Hide();
             empleadosForm.ShowDialog();
+            this.Close();
         }
 
         private void btnGestionTransacciones_Click(object sender, EventArgs e)
         {
             // Abrir el formulario de gestión de clientes
             TransaccionesForm transaccionesForm = new TransaccionesForm();
+            this.Hide();
             transaccionesForm.ShowDialog();
+            this.Close();
         }
 
         private void btnGestionUsuarios_Click(object sender, EventArgs e)
         {
+            //abre el formulario Usuarios y cierra el actual
             UsuariosForm usuariosForm = new UsuariosForm();
+            this.Hide();
             usuariosForm.ShowDialog();
+            this.Close();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -297,6 +297,25 @@ namespace Clave3_Grupo4.Interfaces
         {
             ExportarTransaccionesAExcel();
         }
+
+        private void iNICIOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Abre el inicio y cierra el formulario actual
+            InicioForm InicioForm = new InicioForm();
+            this.Hide();
+            InicioForm.ShowDialog();
+            this.Close();
+        }
+
+        private void sALIEDELAAPPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void TransaccionesForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

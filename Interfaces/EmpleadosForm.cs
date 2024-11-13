@@ -253,5 +253,19 @@ namespace Clave3_Grupo4.Interfaces
         {
 
         }
+
+        private void iNICIOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Abre el inicio y cierra el formulario actual
+            InicioForm InicioForm = new InicioForm();
+            this.Hide();
+            InicioForm.ShowDialog();
+            this.Close();
+        }
+
+        private void sALIEDELAAPPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

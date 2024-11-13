@@ -23,7 +23,20 @@ namespace Clave3_Grupo4.Interfaces
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
+            // Verificar si los campos están vacíos
+            if (string.IsNullOrWhiteSpace(txtNombreUsuario.Text))
+            {
+                MessageBox.Show("Por favor, ingrese el nombre de usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombreUsuario.Focus();
+                return;
+            }
 
+            if (string.IsNullOrWhiteSpace(txtContrasena.Text))
+            {
+                MessageBox.Show("Por favor, ingrese la contraseña.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtContrasena.Focus();
+                return;
+            }
             // Obtener los datos ingresados
             string nombreUsuario = txtNombreUsuario.Text;
             string contrasena = txtContrasena.Text;
@@ -45,7 +58,15 @@ namespace Clave3_Grupo4.Interfaces
             else
             {
                 MessageBox.Show("Nombre de usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Limpia los Texbox si no se ingresa el usuario o contraseña correcta
+                txtNombreUsuario.Text="";
+                txtContrasena.Text = "";
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -56,15 +56,50 @@ namespace Clave3_Grupo4.Interfaces
         // Validación de campos vacíos
         private bool ValidarCampos()
         {
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtApellido.Text) ||
-                string.IsNullOrWhiteSpace(txtDUI.Text) ||
-                cmbTipoProducto.SelectedItem == null)
+            // Validación del campo de nombre
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
-                MessageBox.Show("Por favor, complete todos los campos.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, ingrese el nombre.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            return true;
+
+            // Validación del campo de apellido
+            if (string.IsNullOrWhiteSpace(txtApellido.Text))
+            {
+                MessageBox.Show("Por favor, ingrese el apellido.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validación del campo de DUI
+            if (string.IsNullOrWhiteSpace(txtDUI.Text))
+            {
+                MessageBox.Show("Por favor, ingrese el DUI.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validación del formato del DUI
+            string duiPattern = @"^\d{8}-\d$"; // Formato 12345678-8
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtDUI.Text, duiPattern))
+            {
+                MessageBox.Show("El DUI debe tener el formato 12345678-8.", "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validación de selección de TipoProducto en ComboBox
+            if (cmbTipoProducto.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, seleccione un tipo de producto.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validación de BilleteraVirtual: debe ser un número mayor a 0
+            if (!decimal.TryParse(txtBilleteraVirtual.Text, out decimal billetera) || billetera <= 0)
+            {
+                MessageBox.Show("Por favor, ingrese un valor válido en Billetera Virtual.", "Valor inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true; // Si todas las validaciones pasan, retorna true
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -172,5 +207,23 @@ namespace Clave3_Grupo4.Interfaces
             CargarClientesEnGrid();
         }
 
+        private void iNICIOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Abre el inicio y cierra el formulario actual
+            InicioForm InicioForm = new InicioForm();
+            this.Hide();
+            InicioForm.ShowDialog();
+            this.Close();
+        }
+
+        private void sALIEDELAAPPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ClientesForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

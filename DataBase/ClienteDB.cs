@@ -72,46 +72,6 @@ namespace Clave3_Grupo4.DataBase
             return tablaClientes;
         }
 
-        // Método para obtener un cliente por su ID
-        public Cliente ObtenerClientePorId(int idCliente)
-        {
-            Cliente cliente = null;
-            try
-            {
-                string query = "SELECT * FROM Clientes WHERE IdCliente = @IdCliente";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
-                {
-                    cmd.Parameters.AddWithValue("@IdCliente", idCliente);
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            cliente = new Cliente
-                            {
-                                IdCliente = reader.GetInt32("IdCliente"),
-                                Nombre = reader.GetString("Nombre"),
-                                Apellido = reader.GetString("Apellido"),
-                                DUI = reader.GetString("DUI"),
-                                TipoProducto = reader.GetString("TipoProducto"),
-                                BilleteraVirtual = reader.GetDecimal("BilleteraVirtual")
-                            };
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexionDB.CerrarConexion();
-            }
-            return cliente;
-        }
-
         // Método para modificar un cliente en la base de datos
         public bool ModificarCliente(Cliente cliente)
         {
@@ -168,35 +128,8 @@ namespace Clave3_Grupo4.DataBase
                 conexionDB.CerrarConexion();
             }
         }
-        public DataTable BuscarClientes(string criterio)
-        {
-            DataTable dataTable = new DataTable();
 
-            try
-            {
-                string query = "SELECT * FROM Clientes WHERE Nombre LIKE @Criterio OR Apellido LIKE @Criterio";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
-                {
-                    cmd.Parameters.AddWithValue("@Criterio", "%" + criterio + "%");
-
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al buscar CLiente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conexionDB.CerrarConexion();
-            }
-
-            return dataTable;
-        }
+        
     }
     
     

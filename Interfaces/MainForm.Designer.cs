@@ -29,64 +29,102 @@ namespace Clave3_Grupo4.Interfaces
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnGestionTransacciones = new System.Windows.Forms.Button();
             this.btnGestionEmpleados = new System.Windows.Forms.Button();
             this.btnGestionClientes = new System.Windows.Forms.Button();
             this.btnGestionUsuarios = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGestionTransacciones
             // 
-            this.btnGestionTransacciones.Location = new System.Drawing.Point(253, 184);
+            this.btnGestionTransacciones.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnGestionTransacciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGestionTransacciones.Location = new System.Drawing.Point(308, 311);
             this.btnGestionTransacciones.Name = "btnGestionTransacciones";
-            this.btnGestionTransacciones.Size = new System.Drawing.Size(150, 23);
+            this.btnGestionTransacciones.Size = new System.Drawing.Size(220, 52);
             this.btnGestionTransacciones.TabIndex = 5;
             this.btnGestionTransacciones.Text = "Gestion Transacciones";
-            this.btnGestionTransacciones.UseVisualStyleBackColor = true;
+            this.btnGestionTransacciones.UseVisualStyleBackColor = false;
             this.btnGestionTransacciones.Click += new System.EventHandler(this.btnGestionTransacciones_Click);
             // 
             // btnGestionEmpleados
             // 
-            this.btnGestionEmpleados.Location = new System.Drawing.Point(253, 138);
+            this.btnGestionEmpleados.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnGestionEmpleados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGestionEmpleados.Location = new System.Drawing.Point(308, 228);
             this.btnGestionEmpleados.Name = "btnGestionEmpleados";
-            this.btnGestionEmpleados.Size = new System.Drawing.Size(122, 23);
+            this.btnGestionEmpleados.Size = new System.Drawing.Size(220, 52);
             this.btnGestionEmpleados.TabIndex = 4;
             this.btnGestionEmpleados.Text = "Gestion empleados";
-            this.btnGestionEmpleados.UseVisualStyleBackColor = true;
+            this.btnGestionEmpleados.UseVisualStyleBackColor = false;
             this.btnGestionEmpleados.Click += new System.EventHandler(this.btnGestionEmpleados_Click);
             // 
             // btnGestionClientes
             // 
-            this.btnGestionClientes.Location = new System.Drawing.Point(268, 77);
+            this.btnGestionClientes.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnGestionClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGestionClientes.Location = new System.Drawing.Point(308, 148);
             this.btnGestionClientes.Name = "btnGestionClientes";
-            this.btnGestionClientes.Size = new System.Drawing.Size(107, 23);
+            this.btnGestionClientes.Size = new System.Drawing.Size(220, 52);
             this.btnGestionClientes.TabIndex = 3;
             this.btnGestionClientes.Text = "Gestion de clientes";
-            this.btnGestionClientes.UseVisualStyleBackColor = true;
+            this.btnGestionClientes.UseVisualStyleBackColor = false;
             this.btnGestionClientes.Click += new System.EventHandler(this.btnGestionClientes_Click);
             // 
             // btnGestionUsuarios
             // 
-            this.btnGestionUsuarios.Location = new System.Drawing.Point(268, 234);
+            this.btnGestionUsuarios.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnGestionUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGestionUsuarios.Location = new System.Drawing.Point(308, 387);
             this.btnGestionUsuarios.Name = "btnGestionUsuarios";
-            this.btnGestionUsuarios.Size = new System.Drawing.Size(135, 23);
+            this.btnGestionUsuarios.Size = new System.Drawing.Size(220, 52);
             this.btnGestionUsuarios.TabIndex = 6;
             this.btnGestionUsuarios.Text = "Gestion Usuarios";
-            this.btnGestionUsuarios.UseVisualStyleBackColor = true;
+            this.btnGestionUsuarios.UseVisualStyleBackColor = false;
             this.btnGestionUsuarios.Click += new System.EventHandler(this.btnGestionUsuarios_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(160, 71);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(394, 24);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "SELECIONE EL PROCESO A REALIZAR ";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(569, 45);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(116, 100);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.ClientSize = new System.Drawing.Size(845, 526);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGestionUsuarios);
             this.Controls.Add(this.btnGestionTransacciones);
             this.Controls.Add(this.btnGestionEmpleados);
             this.Controls.Add(this.btnGestionClientes);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -96,5 +134,7 @@ namespace Clave3_Grupo4.Interfaces
         private System.Windows.Forms.Button btnGestionEmpleados;
         private System.Windows.Forms.Button btnGestionClientes;
         private System.Windows.Forms.Button btnGestionUsuarios;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

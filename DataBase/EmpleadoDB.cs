@@ -43,46 +43,6 @@ namespace Clave3_Grupo4.DataBase
             }
         }
 
-        // Método para obtener un empleado por su ID
-        public Empleado ObtenerEmpleadoPorId(int idEmpleado)
-        {
-            Empleado empleado = null;
-            try
-            {
-                string query = "SELECT * FROM Empleados WHERE IdEmpleado = @IdEmpleado";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
-                {
-                    cmd.Parameters.AddWithValue("@IdEmpleado", idEmpleado);
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            empleado = new Empleado
-                            {
-                                IdEmpleado = reader.GetInt32("IdEmpleado"),
-                                Nombre = reader.GetString("Nombre"),
-                                Apellido = reader.GetString("Apellido"),
-                                DUI = reader.GetString("DUI"),
-                                Rol = reader.GetString("Rol")
-                            };
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Error al obtener empleado" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            finally
-            {
-                conexionDB.CerrarConexion();
-            }
-            return empleado;
-        }
 
         // Método para obtener todos los empleados de la base de datos
         public DataTable ObtenerTodosEmpleados()
