@@ -95,5 +95,10 @@ namespace Clave3_Grupo4.Interfaces
         {
 
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
