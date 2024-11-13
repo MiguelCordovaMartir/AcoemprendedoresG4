@@ -140,5 +140,61 @@ namespace Clave3_Grupo4.DataBase
 
             return listaTransacciones;
         }
+
+        public bool EditarTransaccion(Transaccion transaccion)
+        {
+            try
+            {
+                string query = "UPDATE Transacciones SET IdCliente = @IdCliente, IdEmpleado = @IdEmpleado, TipoTransaccion = @TipoTransaccion, Monto = @Monto, Descripcion = @Descripcion WHERE IdTransaccion = @IdTransaccion";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@IdCliente", transaccion.IdCliente);
+                    cmd.Parameters.AddWithValue("@IdEmpleado", transaccion.IdEmpleado);
+                    cmd.Parameters.AddWithValue("@TipoTransaccion", transaccion.TipoTransaccion);
+                    cmd.Parameters.AddWithValue("@Monto", transaccion.Monto);
+                    cmd.Parameters.AddWithValue("@Descripcion", transaccion.Descripcion);
+                    cmd.Parameters.AddWithValue("@IdTransaccion", transaccion.IdTransaccion);
+
+                    int resultado = cmd.ExecuteNonQuery();
+                    return resultado > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar transacción: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+        public bool EliminarTransaccion(int idTransaccion)
+        {
+            try
+            {
+                string query = "DELETE FROM Transacciones WHERE IdTransaccion = @IdTransaccion";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@IdTransaccion", idTransaccion);
+                    int resultado = cmd.ExecuteNonQuery();
+                    return resultado > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar transacción: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+        }
+
+
     }
 }

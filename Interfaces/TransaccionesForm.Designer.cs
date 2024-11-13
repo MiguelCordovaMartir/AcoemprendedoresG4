@@ -39,6 +39,9 @@ namespace Clave3_Grupo4.Interfaces
             this.cmbEmpleados = new System.Windows.Forms.ComboBox();
             this.cmbClientes = new System.Windows.Forms.ComboBox();
             this.btnCargarTransacciones = new System.Windows.Forms.Button();
+            this.btnEditarTransaccion = new System.Windows.Forms.Button();
+            this.btnEliminarTransaccion = new System.Windows.Forms.Button();
+            this.btnExportarExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTransacciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,11 +130,44 @@ namespace Clave3_Grupo4.Interfaces
             this.btnCargarTransacciones.UseVisualStyleBackColor = true;
             this.btnCargarTransacciones.Click += new System.EventHandler(this.btnCargarTransacciones_Click);
             // 
+            // btnEditarTransaccion
+            // 
+            this.btnEditarTransaccion.Location = new System.Drawing.Point(469, 160);
+            this.btnEditarTransaccion.Name = "btnEditarTransaccion";
+            this.btnEditarTransaccion.Size = new System.Drawing.Size(115, 23);
+            this.btnEditarTransaccion.TabIndex = 19;
+            this.btnEditarTransaccion.Text = "Editar Transaccion";
+            this.btnEditarTransaccion.UseVisualStyleBackColor = true;
+            this.btnEditarTransaccion.Click += new System.EventHandler(this.btnEditarTransaccion_Click);
+            // 
+            // btnEliminarTransaccion
+            // 
+            this.btnEliminarTransaccion.Location = new System.Drawing.Point(482, 190);
+            this.btnEliminarTransaccion.Name = "btnEliminarTransaccion";
+            this.btnEliminarTransaccion.Size = new System.Drawing.Size(127, 23);
+            this.btnEliminarTransaccion.TabIndex = 20;
+            this.btnEliminarTransaccion.Text = "Eliminar Transaccion";
+            this.btnEliminarTransaccion.UseVisualStyleBackColor = true;
+            this.btnEliminarTransaccion.Click += new System.EventHandler(this.btnEliminarTransaccion_Click);
+            // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.Location = new System.Drawing.Point(482, 220);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(127, 23);
+            this.btnExportarExcel.TabIndex = 21;
+            this.btnExportarExcel.Text = "Exportar a Excel";
+            this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            // 
             // TransaccionesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnExportarExcel);
+            this.Controls.Add(this.btnEliminarTransaccion);
+            this.Controls.Add(this.btnEditarTransaccion);
             this.Controls.Add(this.btnCargarTransacciones);
             this.Controls.Add(this.dataGridViewTransacciones);
             this.Controls.Add(this.btnVerHistorial);
@@ -162,5 +198,8 @@ namespace Clave3_Grupo4.Interfaces
         private System.Windows.Forms.ComboBox cmbEmpleados;
         private System.Windows.Forms.ComboBox cmbClientes;
         private System.Windows.Forms.Button btnCargarTransacciones;
+        private System.Windows.Forms.Button btnEditarTransaccion;
+        private System.Windows.Forms.Button btnEliminarTransaccion;
+        private System.Windows.Forms.Button btnExportarExcel;
     }
 }

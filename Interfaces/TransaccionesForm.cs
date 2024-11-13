@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clave3_Grupo4.Clases;
 using Clave3_Grupo4.DataBase;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Clave3_Grupo4.Interfaces
 {
@@ -199,8 +200,12 @@ namespace Clave3_Grupo4.Interfaces
 
             if (e.RowIndex >= 0)
             {
-                cmbClientes.SelectedValue = dataGridViewTransacciones.Rows[e.RowIndex].Cells["IdCliente"].Value;
-                CargarHistorialTransacciones();
+                DataGridViewRow row = dataGridViewTransacciones.Rows[e.RowIndex];
+                cmbClientes.SelectedValue = Convert.ToInt32(row.Cells["IdCliente"].Value);
+                cmbEmpleados.SelectedValue = row.Cells["IdEmpleado"].Value != DBNull.Value ? Convert.ToInt32(row.Cells["IdEmpleado"].Value) : (int?)null;
+                cmbTipoTransaccion.SelectedItem = row.Cells["TipoTransaccion"].Value.ToString();
+                txtMonto.Text = row.Cells["Monto"].Value.ToString();
+                txtDescripcion.Text = row.Cells["Descripcion"].Value.ToString();
             }
         }
 
@@ -208,6 +213,89 @@ namespace Clave3_Grupo4.Interfaces
         {
             CargarTodasTransacciones();//carga todas las transacciones 
             LimpiarCamposTransaccion(); // Limpia los campos del formulario
+        }
+
+        private void btnEditarTransaccion_Click(object sender, EventArgs e)
+        {
+            if (!ValidarCamposTransaccion()) return;
+
+            int idTransaccion = Convert.ToInt32(dataGridViewTransacciones.CurrentRow.Cells["IdTransaccion"].Value);
+            Transaccion transaccion = new Transaccion
+            {
+                IdTransaccion = idTransaccion,
+                IdCliente = Convert.ToInt32(cmbClientes.SelectedValue),
+                IdEmpleado = cmbEmpleados.SelectedValue != null ? (int?)Convert.ToInt32(cmbEmpleados.SelectedValue) : null,
+                TipoTransaccion = cmbTipoTransaccion.SelectedItem.ToString(),
+                Monto = Convert.ToDecimal(txtMonto.Text),
+                Descripcion = txtDescripcion.Text
+            };
+
+            if (transaccionDB.EditarTransaccion(transaccion))
+            {
+                MessageBox.Show("Transacción actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarHistorialTransacciones();
+                LimpiarCamposTransaccion();
+            }
+            else
+            {
+                MessageBox.Show("Error al actualizar la transacción.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnEliminarTransaccion_Click(object sender, EventArgs e)
+        {
+            int idTransaccion = Convert.ToInt32(dataGridViewTransacciones.CurrentRow.Cells["IdTransaccion"].Value);
+            var confirmResult = MessageBox.Show("¿Estás seguro de que deseas eliminar esta transacción?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                if (transaccionDB.EliminarTransaccion(idTransaccion))
+                {
+                    MessageBox.Show("Transacción eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CargarHistorialTransacciones();
+                    LimpiarCamposTransaccion();
+                }
+                else
+                {
+                    MessageBox.Show("Error al eliminar la transacción.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ExportarTransaccionesAExcel()
+        {
+            if (dataGridViewTransacciones.Rows.Count > 0)
+            {
+                Excel.Application excelApp = new Excel.Application();
+                excelApp.Workbooks.Add();
+                Excel._Worksheet worksheet = excelApp.ActiveSheet;
+
+                // Exportar encabezados
+                for (int i = 0; i < dataGridViewTransacciones.Columns.Count; i++)
+                {
+                    worksheet.Cells[1, i + 1] = dataGridViewTransacciones.Columns[i].HeaderText;
+                }
+
+                // Exportar datos
+                for (int i = 0; i < dataGridViewTransacciones.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridViewTransacciones.Columns.Count; j++)
+                    {
+                        worksheet.Cells[i + 2, j + 1] = dataGridViewTransacciones.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+
+                excelApp.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("No hay datos para exportar.", "Exportación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            ExportarTransaccionesAExcel();
         }
     }
 }
