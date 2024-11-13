@@ -44,6 +44,8 @@ namespace Clave3_Grupo4.Interfaces
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +53,7 @@ namespace Clave3_Grupo4.Interfaces
             // btnAgregarUsuario
             // 
             this.btnAgregarUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarUsuario.Location = new System.Drawing.Point(504, 92);
+            this.btnAgregarUsuario.Location = new System.Drawing.Point(455, 85);
             this.btnAgregarUsuario.Name = "btnAgregarUsuario";
             this.btnAgregarUsuario.Size = new System.Drawing.Size(129, 26);
             this.btnAgregarUsuario.TabIndex = 0;
@@ -62,7 +64,7 @@ namespace Clave3_Grupo4.Interfaces
             // btnModificarUsuario
             // 
             this.btnModificarUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarUsuario.Location = new System.Drawing.Point(504, 124);
+            this.btnModificarUsuario.Location = new System.Drawing.Point(455, 117);
             this.btnModificarUsuario.Name = "btnModificarUsuario";
             this.btnModificarUsuario.Size = new System.Drawing.Size(129, 27);
             this.btnModificarUsuario.TabIndex = 1;
@@ -73,7 +75,7 @@ namespace Clave3_Grupo4.Interfaces
             // btnEliminarUsuario
             // 
             this.btnEliminarUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarUsuario.Location = new System.Drawing.Point(504, 160);
+            this.btnEliminarUsuario.Location = new System.Drawing.Point(455, 153);
             this.btnEliminarUsuario.Name = "btnEliminarUsuario";
             this.btnEliminarUsuario.Size = new System.Drawing.Size(129, 25);
             this.btnEliminarUsuario.TabIndex = 2;
@@ -84,7 +86,7 @@ namespace Clave3_Grupo4.Interfaces
             // btnConsultarUsuarios
             // 
             this.btnConsultarUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsultarUsuarios.Location = new System.Drawing.Point(504, 191);
+            this.btnConsultarUsuarios.Location = new System.Drawing.Point(455, 184);
             this.btnConsultarUsuarios.Name = "btnConsultarUsuarios";
             this.btnConsultarUsuarios.Size = new System.Drawing.Size(129, 40);
             this.btnConsultarUsuarios.TabIndex = 3;
@@ -133,7 +135,7 @@ namespace Clave3_Grupo4.Interfaces
             this.sALIEDELAAPPToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(847, 25);
             this.menuStrip1.TabIndex = 16;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -195,12 +197,35 @@ namespace Clave3_Grupo4.Interfaces
             this.label4.TabIndex = 20;
             this.label4.Text = "LLENE TODOS LOS CAMPOS PARA INGRESAR UN USUARIO";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(652, 121);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(142, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Exportar a Excel";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(652, 85);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(134, 32);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Exportar todos los\r\n Usuarios a Excel";
+            // 
             // UsuariosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(847, 450);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -216,6 +241,7 @@ namespace Clave3_Grupo4.Interfaces
             this.Controls.Add(this.btnAgregarUsuario);
             this.Name = "UsuariosForm";
             this.Text = "UsuariosForm";
+            this.Load += new System.EventHandler(this.UsuariosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -241,5 +267,7 @@ namespace Clave3_Grupo4.Interfaces
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
     }
 }

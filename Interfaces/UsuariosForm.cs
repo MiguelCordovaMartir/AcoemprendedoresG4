@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clave3_Grupo4.DataBase;
+using Excel = Microsoft.Office.Interop.Excel;
 using Clave3_Grupo4.Clases;
 
 namespace Clave3_Grupo4.Interfaces
@@ -119,16 +120,31 @@ namespace Clave3_Grupo4.Interfaces
                 }
             }
         }
+
         // Validación de campos vacíos
         private bool ValidarCamposUsuario()
         {
-            if (string.IsNullOrWhiteSpace(txtNombreUsuario.Text) ||
-                string.IsNullOrWhiteSpace(txtContrasena.Text) ||
-                cmbRol.SelectedItem == null)
+            if (string.IsNullOrWhiteSpace(txtNombreUsuario.Text))
             {
-                MessageBox.Show("Por favor, complete todos los campos.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, ingrese el nombre de usuario.", "Campo vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombreUsuario.Focus(); // Coloca el cursor en el campo de nombre de usuario
                 return false;
             }
+
+            if (string.IsNullOrWhiteSpace(txtContrasena.Text))
+            {
+                MessageBox.Show("Por favor, ingrese la contraseña.", "Campo vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtContrasena.Focus(); // Coloca el cursor en el campo de contraseña
+                return false;
+            }
+
+            if (cmbRol.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, seleccione un rol.", "Campo vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbRol.Focus(); // Coloca el cursor en el ComboBox de rol
+                return false;
+            }
+
             return true;
         }
 
@@ -157,6 +173,45 @@ namespace Clave3_Grupo4.Interfaces
         private void sALIEDELAAPPToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void UsuariosForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Crear una nueva aplicación de Excel
+                Excel.Application excelApp = new Excel.Application();
+                excelApp.Workbooks.Add();
+                Excel._Worksheet worksheet = (Excel._Worksheet)excelApp.ActiveSheet;
+                worksheet.Name = "Usuarios";
+
+                // Exportar los encabezados del DataGridView a Excel
+                for (int i = 0; i < dataGridViewUsuarios.Columns.Count; i++)
+                {
+                    worksheet.Cells[1, i + 1] = dataGridViewUsuarios.Columns[i].HeaderText;
+                }
+
+                // Exportar los datos del DataGridView a Excel
+                for (int i = 0; i < dataGridViewUsuarios.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridViewUsuarios.Columns.Count; j++)
+                    {
+                        worksheet.Cells[i + 2, j + 1] = dataGridViewUsuarios.Rows[i].Cells[j].Value?.ToString();
+                    }
+                }
+
+                // Mostrar el archivo de Excel al usuario
+                excelApp.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar a Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
