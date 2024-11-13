@@ -52,6 +52,7 @@ namespace Clave3_Grupo4.Interfaces
             txtDUI.Clear();
             cmbTipoProducto.SelectedIndex = -1;
             txtBilleteraVirtual.Clear();
+            txtBuscarCliente.Clear();
         }
         // Validación de campos vacíos
         private bool ValidarCampos()
@@ -205,6 +206,8 @@ namespace Clave3_Grupo4.Interfaces
         private void btnObtenerClientes_Click(object sender, EventArgs e)
         {
             CargarClientesEnGrid();
+            LimpiarCampos();
+
         }
 
         private void iNICIOToolStripMenuItem_Click(object sender, EventArgs e)
@@ -224,6 +227,53 @@ namespace Clave3_Grupo4.Interfaces
         private void ClientesForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewClientes.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Inicializar Excel
+            var excelApp = new Microsoft.Office.Interop.Excel.Application();
+            var workbook = excelApp.Workbooks.Add();
+            var worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets[1];
+
+            // Exportar encabezados de columna
+            for (int i = 0; i < dataGridViewClientes.Columns.Count; i++)
+            {
+                worksheet.Cells[1, i + 1] = dataGridViewClientes.Columns[i].HeaderText;
+            }
+
+            // Exportar datos de las filas
+            for (int i = 0; i < dataGridViewClientes.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataGridViewClientes.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = dataGridViewClientes.Rows[i].Cells[j].Value?.ToString() ?? "";
+                }
+            }
+
+            // Mostrar Excel
+            excelApp.Visible = true;
+        }
+
+        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            string criterio = txtBuscarCliente.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(criterio))
+            {
+                MessageBox.Show("Por favor, ingrese un nombre o apellido para buscar.", "Campo vacío", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataTable clientesFiltrados = clienteDB.BuscarClientes(criterio);
+            dataGridViewClientes.DataSource = clientesFiltrados;
         }
     }
 }

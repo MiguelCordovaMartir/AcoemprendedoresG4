@@ -129,7 +129,37 @@ namespace Clave3_Grupo4.DataBase
             }
         }
 
-        
+        public DataTable BuscarClientes(string criterio)
+        {
+            DataTable tablaClientes = new DataTable();
+
+            try
+            {
+                string query = "SELECT * FROM Clientes WHERE Nombre LIKE @Criterio OR Apellido LIKE @Criterio";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@Criterio", "%" + criterio + "%");
+
+                    using (MySqlDataAdapter adaptador = new MySqlDataAdapter(cmd))
+                    {
+                        adaptador.Fill(tablaClientes);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar clientes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
+
+            return tablaClientes;
+        }
+
+
     }
     
     

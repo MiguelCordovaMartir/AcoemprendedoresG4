@@ -48,11 +48,11 @@ namespace Clave3_Grupo4.Interfaces
             this.iNICIOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sALIEDELAAPPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnEcportarExcel = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtBuscarCLiente = new System.Windows.Forms.TextBox();
+            this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnExportarExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClientes)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -241,16 +241,6 @@ namespace Clave3_Grupo4.Interfaces
             this.label6.TabIndex = 16;
             this.label6.Text = "LLENE TODOS LOS CAMPOS PARA AÑADIR UN NUEVO CLIENTE ";
             // 
-            // btnEcportarExcel
-            // 
-            this.btnEcportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEcportarExcel.Location = new System.Drawing.Point(705, 263);
-            this.btnEcportarExcel.Name = "btnEcportarExcel";
-            this.btnEcportarExcel.Size = new System.Drawing.Size(146, 23);
-            this.btnEcportarExcel.TabIndex = 17;
-            this.btnEcportarExcel.Text = "Exportar a Excel";
-            this.btnEcportarExcel.UseVisualStyleBackColor = true;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -261,13 +251,13 @@ namespace Clave3_Grupo4.Interfaces
             this.label7.TabIndex = 18;
             this.label7.Text = "Exportar clientes a \r\narchivo de  Excel";
             // 
-            // txtBuscarCLiente
+            // txtBuscarCliente
             // 
-            this.txtBuscarCLiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarCLiente.Location = new System.Drawing.Point(680, 159);
-            this.txtBuscarCLiente.Name = "txtBuscarCLiente";
-            this.txtBuscarCLiente.Size = new System.Drawing.Size(100, 22);
-            this.txtBuscarCLiente.TabIndex = 19;
+            this.txtBuscarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarCliente.Location = new System.Drawing.Point(680, 159);
+            this.txtBuscarCliente.Name = "txtBuscarCliente";
+            this.txtBuscarCliente.Size = new System.Drawing.Size(100, 22);
+            this.txtBuscarCliente.TabIndex = 19;
             // 
             // btnBuscarCliente
             // 
@@ -278,6 +268,7 @@ namespace Clave3_Grupo4.Interfaces
             this.btnBuscarCliente.TabIndex = 20;
             this.btnBuscarCliente.Text = "Buscar";
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
+            this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
             // 
             // label8
             // 
@@ -289,17 +280,28 @@ namespace Clave3_Grupo4.Interfaces
             this.label8.TabIndex = 21;
             this.label8.Text = "Buscar Cliente por \r\nNombre o Apellido";
             // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportarExcel.Location = new System.Drawing.Point(695, 270);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(146, 23);
+            this.btnExportarExcel.TabIndex = 22;
+            this.btnExportarExcel.Text = "Exportar a Excel";
+            this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            // 
             // ClientesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(913, 609);
+            this.Controls.Add(this.btnExportarExcel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnBuscarCliente);
-            this.Controls.Add(this.txtBuscarCLiente);
+            this.Controls.Add(this.txtBuscarCliente);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnEcportarExcel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -350,10 +352,10 @@ namespace Clave3_Grupo4.Interfaces
         private System.Windows.Forms.ToolStripMenuItem iNICIOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sALIEDELAAPPToolStripMenuItem;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnEcportarExcel;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtBuscarCLiente;
+        private System.Windows.Forms.TextBox txtBuscarCliente;
         private System.Windows.Forms.Button btnBuscarCliente;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnExportarExcel;
     }
 }
