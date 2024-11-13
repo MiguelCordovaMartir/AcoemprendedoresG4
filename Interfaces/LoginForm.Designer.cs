@@ -29,58 +29,55 @@ namespace Clave3_Grupo4.Interfaces
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnIniciarSesion = new System.Windows.Forms.Button();
-            this.txtContraseña = new System.Windows.Forms.TextBox();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtNombreUsuario = new System.Windows.Forms.TextBox();
+            this.txtContrasena = new System.Windows.Forms.TextBox();
+            this.btnIniciarSesion = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnIniciarSesion
-            // 
-            this.btnIniciarSesion.Location = new System.Drawing.Point(446, 255);
-            this.btnIniciarSesion.Name = "btnIniciarSesion";
-            this.btnIniciarSesion.Size = new System.Drawing.Size(75, 23);
-            this.btnIniciarSesion.TabIndex = 9;
-            this.btnIniciarSesion.Text = "Inicar Seccion";
-            this.btnIniciarSesion.UseVisualStyleBackColor = true;
-            this.btnIniciarSesion.Click += new System.EventHandler(this.btnIniciarSesion_Click);
-            // 
-            // txtContraseña
-            // 
-            this.txtContraseña.Location = new System.Drawing.Point(391, 180);
-            this.txtContraseña.Name = "txtContraseña";
-            this.txtContraseña.Size = new System.Drawing.Size(100, 20);
-            this.txtContraseña.TabIndex = 8;
-            this.txtContraseña.TextChanged += new System.EventHandler(this.txtContraseña_TextChanged);
-            // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Location = new System.Drawing.Point(391, 135);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(100, 20);
-            this.txtUsuario.TabIndex = 7;
-            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(221, 188);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Contraseña";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(218, 151);
+            this.label1.Location = new System.Drawing.Point(127, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Usuario";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(130, 93);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "label2";
+            // 
+            // txtNombreUsuario
+            // 
+            this.txtNombreUsuario.Location = new System.Drawing.Point(267, 47);
+            this.txtNombreUsuario.Name = "txtNombreUsuario";
+            this.txtNombreUsuario.Size = new System.Drawing.Size(100, 20);
+            this.txtNombreUsuario.TabIndex = 3;
+            // 
+            // txtContrasena
+            // 
+            this.txtContrasena.Location = new System.Drawing.Point(267, 85);
+            this.txtContrasena.Name = "txtContrasena";
+            this.txtContrasena.PasswordChar = '*';
+            this.txtContrasena.Size = new System.Drawing.Size(100, 20);
+            this.txtContrasena.TabIndex = 4;
+            // 
+            // btnIniciarSesion
+            // 
+            this.btnIniciarSesion.Location = new System.Drawing.Point(497, 43);
+            this.btnIniciarSesion.Name = "btnIniciarSesion";
+            this.btnIniciarSesion.Size = new System.Drawing.Size(95, 23);
+            this.btnIniciarSesion.TabIndex = 5;
+            this.btnIniciarSesion.Text = "Iniciar Sesion";
+            this.btnIniciarSesion.UseVisualStyleBackColor = true;
+            this.btnIniciarSesion.Click += new System.EventHandler(this.btnIniciarSesion_Click);
             // 
             // LoginForm
             // 
@@ -88,8 +85,8 @@ namespace Clave3_Grupo4.Interfaces
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnIniciarSesion);
-            this.Controls.Add(this.txtContraseña);
-            this.Controls.Add(this.txtUsuario);
+            this.Controls.Add(this.txtContrasena);
+            this.Controls.Add(this.txtNombreUsuario);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "LoginForm";
@@ -100,11 +97,10 @@ namespace Clave3_Grupo4.Interfaces
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnIniciarSesion;
-        private System.Windows.Forms.TextBox txtContraseña;
-        private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtNombreUsuario;
+        private System.Windows.Forms.TextBox txtContrasena;
+        private System.Windows.Forms.Button btnIniciarSesion;
     }
 }

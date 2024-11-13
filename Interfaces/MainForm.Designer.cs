@@ -32,6 +32,7 @@ namespace Clave3_Grupo4.Interfaces
             this.btnGestionTransacciones = new System.Windows.Forms.Button();
             this.btnGestionEmpleados = new System.Windows.Forms.Button();
             this.btnGestionClientes = new System.Windows.Forms.Button();
+            this.btnGestionUsuarios = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGestionTransacciones
@@ -64,11 +65,22 @@ namespace Clave3_Grupo4.Interfaces
             this.btnGestionClientes.UseVisualStyleBackColor = true;
             this.btnGestionClientes.Click += new System.EventHandler(this.btnGestionClientes_Click);
             // 
+            // btnGestionUsuarios
+            // 
+            this.btnGestionUsuarios.Location = new System.Drawing.Point(268, 234);
+            this.btnGestionUsuarios.Name = "btnGestionUsuarios";
+            this.btnGestionUsuarios.Size = new System.Drawing.Size(135, 23);
+            this.btnGestionUsuarios.TabIndex = 6;
+            this.btnGestionUsuarios.Text = "Gestion Usuarios";
+            this.btnGestionUsuarios.UseVisualStyleBackColor = true;
+            this.btnGestionUsuarios.Click += new System.EventHandler(this.btnGestionUsuarios_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnGestionUsuarios);
             this.Controls.Add(this.btnGestionTransacciones);
             this.Controls.Add(this.btnGestionEmpleados);
             this.Controls.Add(this.btnGestionClientes);
@@ -83,5 +95,6 @@ namespace Clave3_Grupo4.Interfaces
         private System.Windows.Forms.Button btnGestionTransacciones;
         private System.Windows.Forms.Button btnGestionEmpleados;
         private System.Windows.Forms.Button btnGestionClientes;
+        private System.Windows.Forms.Button btnGestionUsuarios;
     }
 }

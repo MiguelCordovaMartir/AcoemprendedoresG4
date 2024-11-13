@@ -105,6 +105,7 @@
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Empleado.cs" />
     <Compile Include="Clases\Transaccion.cs" />
+    <Compile Include="Clases\Usuario.cs" />
     <Compile Include="DataBase\ClienteDB.cs" />
     <Compile Include="DataBase\ConexionDB.cs" />
     <Compile Include="DataBase\EmpleadoDB.cs" />
@@ -121,6 +122,12 @@
     </Compile>
     <Compile Include="Interfaces\EmpleadosForm.Designer.cs">
       <DependentUpon>EmpleadosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\InicioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\InicioForm.Designer.cs">
+      <DependentUpon>InicioForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\LoginForm.cs">
       <SubType>Form</SubType>
@@ -140,6 +147,12 @@
     <Compile Include="Interfaces\TransaccionesForm.Designer.cs">
       <DependentUpon>TransaccionesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\UsuariosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\UsuariosForm.Designer.cs">
+      <DependentUpon>UsuariosForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Interfaces\ClientesForm.resx">
@@ -147,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaces\EmpleadosForm.resx">
       <DependentUpon>EmpleadosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\InicioForm.resx">
+      <DependentUpon>InicioForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaces\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -156,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaces\TransaccionesForm.resx">
       <DependentUpon>TransaccionesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\UsuariosForm.resx">
+      <DependentUpon>UsuariosForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -4,42 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Clave3_Grupo4.Clases;
 using MySql.Data.MySqlClient;
+using Clave3_Grupo4.Clases;
+using System.Data;
 
 namespace Clave3_Grupo4.DataBase
 {
-    class UsuarioDB
+    public class UsuarioDB
     {
         private ConexionDB conexionDB = new ConexionDB();
 
-        // Método para insertar un nuevo usuario en la base de datos
-        public bool InsertarUsuario(Empleado empleado)
+        // Método para insertar un nuevo usuario
+        public bool InsertarUsuario(Usuario usuario)
         {
             try
             {
-                // SQL para insertar un nuevo usuario
-                string query = "INSERT INTO Empleados (Nombre, Apellido, DUI, Rol) VALUES (@Nombre, @Apellido, @DUI, @Rol)";
+                string query = "INSERT INTO Usuarios (NombreUsuario, Contrasena, Rol) VALUES (@NombreUsuario, @Contrasena, @Rol)";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
                 {
-                    // Asignación de parámetros
-                    cmd.Parameters.AddWithValue("@Nombre", empleado.Nombre);
-                    cmd.Parameters.AddWithValue("@Apellido", empleado.Apellido);
-                    cmd.Parameters.AddWithValue("@DUI", empleado.DUI);
-                    cmd.Parameters.AddWithValue("@Rol", empleado.Rol);
+                    cmd.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
+                    cmd.Parameters.AddWithValue("@Contrasena", usuario.Contrasena);
+                    cmd.Parameters.AddWithValue("@Rol", usuario.Rol);
 
-                    // Ejecución del comando
                     int resultado = cmd.ExecuteNonQuery();
-
-                    // Si el comando afectó filas, retorna true
                     return resultado > 0;
                 }
             }
             catch (Exception ex)
             {
-                // Muestra un mensaje de error si ocurre una excepción
-                MessageBox.Show("Error al insertar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al agregar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             finally
@@ -48,30 +42,52 @@ namespace Clave3_Grupo4.DataBase
             }
         }
 
-        // Método para obtener un usuario por su DUI
-        public Empleado ObtenerUsuarioPorDUI(string dui)
+        // Método para obtener todos los usuarios
+        public DataTable ObtenerTodosUsuarios()
         {
-            Empleado empleado = null;
+            DataTable dataTable = new DataTable();
 
             try
             {
-                // SQL para obtener un usuario específico
-                string query = "SELECT * FROM Empleados WHERE DUI = @DUI";
+                string query = "SELECT * FROM Usuarios";
+                using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener usuarios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conexionDB.CerrarConexion();
+            }
 
+            return dataTable;
+        }
+
+        // Método para obtener un usuario por su nombre de usuario
+        public Usuario ObtenerUsuarioPorNombreUsuario(string nombreUsuario)
+        {
+            Usuario usuario = null;
+            try
+            {
+                string query = "SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario";
                 using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
                 {
-                    cmd.Parameters.AddWithValue("@DUI", dui);
+                    cmd.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            empleado = new Empleado
+                            usuario = new Usuario
                             {
-                                IdEmpleado = reader.GetInt32("IdEmpleado"),
-                                Nombre = reader.GetString("Nombre"),
-                                Apellido = reader.GetString("Apellido"),
-                                DUI = reader.GetString("DUI"),
+                                IdUsuario = reader.GetInt32("IdUsuario"),
+                                NombreUsuario = reader.GetString("NombreUsuario"),
+                                Contrasena = reader.GetString("Contrasena"),
                                 Rol = reader.GetString("Rol")
                             };
                         }
@@ -80,44 +96,36 @@ namespace Clave3_Grupo4.DataBase
             }
             catch (Exception ex)
             {
-                // Muestra un mensaje de error si ocurre una excepción
                 MessageBox.Show("Error al obtener usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 conexionDB.CerrarConexion();
             }
-
-            return empleado;
+            return usuario;
         }
 
-        // Método para actualizar un usuario existente
-        public bool ActualizarUsuario(Empleado empleado)
+
+        // Método para modificar un usuario existente
+        public bool ModificarUsuario(Usuario usuario)
         {
             try
             {
-                // SQL para actualizar un usuario existente
-                string query = "UPDATE Empleados SET Nombre = @Nombre, Apellido = @Apellido, Rol = @Rol WHERE DUI = @DUI";
+                string query = "UPDATE Usuarios SET Contrasena = @Contrasena, Rol = @Rol WHERE IdUsuario = @IdUsuario";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
                 {
-                    // Asignación de parámetros
-                    cmd.Parameters.AddWithValue("@Nombre", empleado.Nombre);
-                    cmd.Parameters.AddWithValue("@Apellido", empleado.Apellido);
-                    cmd.Parameters.AddWithValue("@Rol", empleado.Rol);
-                    cmd.Parameters.AddWithValue("@DUI", empleado.DUI);
+                    cmd.Parameters.AddWithValue("@IdUsuario", usuario.IdUsuario);
+                    cmd.Parameters.AddWithValue("@Contrasena", usuario.Contrasena);
+                    cmd.Parameters.AddWithValue("@Rol", usuario.Rol);
 
-                    // Ejecución del comando
                     int resultado = cmd.ExecuteNonQuery();
-
-                    // Si el comando afectó filas, retorna true
                     return resultado > 0;
                 }
             }
             catch (Exception ex)
             {
-                // Muestra un mensaje de error si ocurre una excepción
-                MessageBox.Show("Error al actualizar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al modificar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             finally
@@ -126,28 +134,23 @@ namespace Clave3_Grupo4.DataBase
             }
         }
 
-        // Método para eliminar un usuario por su DUI
-        public bool EliminarUsuario(string dui)
+        // Método para eliminar un usuario por su ID
+        public bool EliminarUsuario(int idUsuario)
         {
             try
             {
-                // SQL para eliminar un usuario específico
-                string query = "DELETE FROM Empleados WHERE DUI = @DUI";
+                string query = "DELETE FROM Usuarios WHERE IdUsuario = @IdUsuario";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conexionDB.ObtenerConexion()))
                 {
-                    cmd.Parameters.AddWithValue("@DUI", dui);
+                    cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
 
-                    // Ejecución del comando
                     int resultado = cmd.ExecuteNonQuery();
-
-                    // Si el comando afectó filas, retorna true
                     return resultado > 0;
                 }
             }
             catch (Exception ex)
             {
-                // Muestra un mensaje de error si ocurre una excepción
                 MessageBox.Show("Error al eliminar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
