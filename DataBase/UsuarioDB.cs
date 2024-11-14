@@ -130,6 +130,7 @@ namespace Clave3_Grupo4.DataBase
             }
             finally
             {
+                //Cierra la conexion
                 conexionDB.CerrarConexion();
             }
         }

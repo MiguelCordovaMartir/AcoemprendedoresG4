@@ -41,7 +41,9 @@ namespace Clave3_Grupo4.DataBase
                 return false;
             }
             finally
+
             {
+                //cierra la conexion
                 conexionDB.CerrarConexion();
             }
         }
@@ -63,6 +65,7 @@ namespace Clave3_Grupo4.DataBase
             }
             catch (Exception ex)
             {
+                //mensaje de error
                 MessageBox.Show("Error al obtener clientes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
@@ -94,6 +97,7 @@ namespace Clave3_Grupo4.DataBase
             }
             catch (Exception ex)
             {
+                //mensaje de error 
                 MessageBox.Show("Error al modificar cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -125,10 +129,12 @@ namespace Clave3_Grupo4.DataBase
             }
             finally
             {
+                //cierra la conexcion
                 conexionDB.CerrarConexion();
             }
         }
 
+        //metodo Buscar cliente 
         public DataTable BuscarClientes(string criterio)
         {
             DataTable tablaClientes = new DataTable();
@@ -149,10 +155,12 @@ namespace Clave3_Grupo4.DataBase
             }
             catch (Exception ex)
             {
+                //mensaje de erro
                 MessageBox.Show("Error al buscar clientes: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
+                //cierra la conexion
                 conexionDB.CerrarConexion();
             }
 

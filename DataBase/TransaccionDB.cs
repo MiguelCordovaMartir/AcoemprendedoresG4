@@ -135,6 +135,7 @@ namespace Clave3_Grupo4.DataBase
             }
             finally
             {
+                
                 conexionDB.CerrarConexion();
             }
 
@@ -167,6 +168,7 @@ namespace Clave3_Grupo4.DataBase
             }
             finally
             {
+                //cierra la conexion
                 conexionDB.CerrarConexion();
             }
         }
@@ -186,11 +188,13 @@ namespace Clave3_Grupo4.DataBase
             }
             catch (Exception ex)
             {
+                //mensaje de error
                 MessageBox.Show("Error al eliminar transacción: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             finally
             {
+                //cierra la conexion
                 conexionDB.CerrarConexion();
             }
         }
