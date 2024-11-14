@@ -94,9 +94,9 @@ namespace Clave3_Grupo4.Interfaces
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(160, 71);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(394, 24);
+            this.label1.Size = new System.Drawing.Size(408, 24);
             this.label1.TabIndex = 7;
-            this.label1.Text = "SELECIONE EL PROCESO A REALIZAR ";
+            this.label1.Text = "SELECCIONE EL PROCESO A REALIZAR ";
             // 
             // pictureBox1
             // 
